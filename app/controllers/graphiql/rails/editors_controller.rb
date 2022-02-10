@@ -1,6 +1,10 @@
 module GraphiQL
   module Rails
     class EditorsController < ActionController::Base
+      content_security_policy do |policy|
+        policy.script_src(*policy.script_src, :unsafe_eval)
+      end if respond_to?(:content_security_policy)
+
       def show
       end
 
